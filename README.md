@@ -106,4 +106,11 @@ Request timeout for icmp_seq 3
 --- 192.168.2.2 ping statistics ---
 5 packets transmitted, 0 packets received, 100.0% packet loss
 ```
-meaning the firewall is indeed working. (I did have a bit of a worry when I realised that the ping was working, and then realised I was still SSH'd into the firewall system and so it wasn't "outside traffic")
+meaning the firewall is indeed working.
+
+## 3. Creating the non-functional network configuration portal
+
+I am going to use nginx to create the web server (even though it only needs to be accessed from the LAN) since it is easy to use and configure.
+I started by editing ```/etc/nginx/nginx.conf``` and making it listen on port 80, with a directory of /web/nginx/ and then put an index.html in that folder. 
+
+First, I need to make a backend, that is capable of controlling the firewall. I chose Go as the language to do this in. 

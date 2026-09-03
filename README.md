@@ -106,4 +106,4 @@ Request timeout for icmp_seq 3
 --- 192.168.2.2 ping statistics ---
 5 packets transmitted, 0 packets received, 100.0% packet loss
 ```
-meaning the firewall is indeed working. (I did have a bit of a worry when I realised that the ping was working, and then realised I was still SSH'd into the firewall system and so it wasn't "outside traffic")s
+meaning the firewall is indeed working. (I did have a bit of a worry when I realised that the ping was working, and then realised I was still SSH'd into the firewall system and so it wasn't "outside traffic")

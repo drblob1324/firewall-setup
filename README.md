@@ -87,3 +87,23 @@ table ip nat {
 	}
 }
 ```
+
+### Testing it works
+
+We can test if *NAT* is working with a tcpdump again. On the legacy, firewalled system I did ```ping -c 3 8.8.8.8``` and ```sudo tcpdump -ni enp4s0f3u2 icmp``` on the Linux system. \
+The ping worked and finished with ```0% packet loss``` and the ```tcpdump``` shows both the outgoing ```11:36:19.348573 IP 192.168.2.2 > 8.8.8.8: ICMP echo request, id 57344, seq 0, length 64```
+and incoming ```11:36:19.357112 IP 8.8.8.8 > 192.168.2.2: ICMP echo reply, id 57344, seq 0, length 64``` packets.
+
+We can test if the *firewall* is working with a simple ping from outside. 
+```
+user@outsideSystem ~ % ping 192.168.2.2
+PING 192.168.2.2 (192.168.2.2): 56 data bytes
+Request timeout for icmp_seq 0
+Request timeout for icmp_seq 1
+Request timeout for icmp_seq 2
+Request timeout for icmp_seq 3
+^C
+--- 192.168.2.2 ping statistics ---
+5 packets transmitted, 0 packets received, 100.0% packet loss
+```
+meaning the firewall is indeed working. (I did have a bit of a worry when I realised that the ping was working, and then realised I was still SSH'd into the firewall system and so it wasn't "outside traffic")s
